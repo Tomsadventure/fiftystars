@@ -1,0 +1,16 @@
+{
+  "name": "Fifty Stars",
+  "short_name": "Fifty Stars",
+  "description": "Learn the 50 U.S. states – flags, capitals, cities and the map.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4ead5",
+  "theme_color": "#1f3a5f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

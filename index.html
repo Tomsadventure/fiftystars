@@ -4,43 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fifty Stars</title>
-<meta name="description" content="Learn the 50 U.S. states – their flags, capitals and biggest cities. Coming soon.">
-<meta name="theme-color" content="#f4ecdc">
-<style>
-  :root { --paper: #f4ecdc; --ink: #1f2a44; --red: #b23a2e; --star: #c9a227; --muted: #6b6457; }
-  @media (prefers-color-scheme: dark) { :root { --paper: #161c2c; --ink: #efe6d2; --red: #e0705f; --star: #e3bd45; --muted: #a59d8c; } }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
-  body {
-    background: var(--paper); color: var(--ink);
-    font: 17px/1.5 Georgia, "Times New Roman", serif;
-    display: grid; place-items: center; padding: 24px 16px;
-  }
-  main { max-width: 34rem; text-align: center; }
-  .stars { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; width: min(300px, 80vw); margin: 0 auto 28px; }
-  .stars svg { width: 100%; height: auto; fill: var(--star); opacity: .18; animation: glow 6s ease-in-out infinite; }
-  @keyframes glow { 0%, 100% { opacity: .18; transform: scale(.9); } 40%, 60% { opacity: 1; transform: scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .stars svg { animation: none; opacity: .7; } }
-  h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); letter-spacing: .02em; margin: 0 0 .2em; }
-  h1 span { color: var(--red); }
-  p { margin: .4em 0; }
-  .soon { margin-top: 1.6em; font: 600 .8rem/1 system-ui, sans-serif; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
-</style>
+<meta name="description" content="Learn the 50 U.S. states – their flags, their capitals, their biggest cities and where they are on the map.">
+<meta name="theme-color" content="#f4ead5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151c2b" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Fifty Stars">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="fonts/AlfaSlabOne.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/LibreFranklin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=2026-11-04-b6cf0b8">
 </head>
-<body>
-<main>
-  <div class="stars" id="stars" aria-hidden="true"></div>
-  <h1>Fifty <span>Stars</span></h1>
-  <p>Learn the 50 U.S. states – their flags, their capitals and their biggest cities.</p>
-  <p class="soon">Coming soon</p>
-</main>
-<script>
-  const star = '<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7.3L12 17.6 5.7 21.5l1.7-7.3L2 9.5l7.1-.6z"/></svg>';
-  const box = document.getElementById('stars');
-  for (let i = 0; i < 50; i++) {
-    box.insertAdjacentHTML('beforeend', star);
-    box.lastElementChild.style.animationDelay = ((i * 37) % 50) * 0.12 + 's';
-  }
-</script>
+<body data-view="start">
+<!-- gemeinsame SVG-Teile: Tinte der Stempel, Bögen für die Schrift im runden Stempel -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3.2 2.45" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="s"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
+      <feDisplacementMap in="s" in2="w" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <path id="arc-top" d="M13 50a37 37 0 0 1 74 0"/>
+    <path id="arc-bottom" d="M7.5 50a42.5 42.5 0 0 0 85 0"/>
+  </defs>
+</svg>
+<main id="app" aria-live="polite"></main>
+<div id="sheet"></div>
+<div id="fx" aria-hidden="true"></div>
+<noscript><p style="padding:2rem;font-family:sans-serif">Fifty Stars needs JavaScript.</p></noscript>
+<script>window.BUILD = '2026-11-04-b6cf0b8';</script>
+<script src="js/data.js?v=2026-11-04-b6cf0b8"></script>
+<script src="js/learn.js?v=2026-11-04-b6cf0b8"></script>
+<script src="js/ton.js?v=2026-11-04-b6cf0b8"></script>
+<script src="js/ui.js?v=2026-11-04-b6cf0b8"></script>
+<script src="js/app.js?v=2026-11-04-b6cf0b8"></script>
 </body>
 </html>
